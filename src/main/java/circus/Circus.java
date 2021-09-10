@@ -7,6 +7,9 @@ import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Circus {
     private static Animal[] animals = {
             new Duck("Drake"),
@@ -39,8 +42,27 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        System.out.println("Number of animals: " + animals.length);
+        animalArrayList.add(new Parrot("Poopy"));
+        Duck louise = new Duck("Louise");
+        animalArrayList.add(louise);
+
+        System.out.println("Size of ArrayList: " + animalArrayList.size());
+        printAllAnimals(animalArrayList);
+        System.out.println("Index of Louise: " + animalArrayList.indexOf(louise));//Need obj reference to use index of
+        System.out.println("After Sorting...");
+        animalArrayList.sort(Animal.AnimalNameComparator);
+        printAllAnimals(animalArrayList);
+        System.out.println("Index of Louise: " + animalArrayList.indexOf(louise));
+//        makeAnimalsTalk();
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+    }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a : animalArrayList) {
+            System.out.println(a);
+        }
     }
 }
